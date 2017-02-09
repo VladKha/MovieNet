@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'movies',
     'django_countries',
     'debug_toolbar',
-    'userlog',
+    # 'userlog',
     'import_export',
 ]
 
@@ -48,8 +48,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
-    'userlog.middleware.UserLogMiddleware'
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'userlog.middleware.UserLogMiddleware'
 ]
 
 ROOT_URLCONF = 'MovieNet.urls'
@@ -156,25 +156,25 @@ JET_THEMES = [
 ]
 
 # Caching
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-    },
-    'userlog': {
-        'BACKEND': 'redis_cache.RedisCache',
-        'LOCATION': 'localhost:6379',
-        'TIMEOUT': 60 * 60 * 24,  # 24 hours cache
-        'KEY_PREFIX': 'userlog',
-    },
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+#     },
+#     'userlog': {
+#         'BACKEND': 'redis_cache.RedisCache',
+#         'LOCATION': 'localhost:6379',
+#         'TIMEOUT': 60 * 60 * 24,  # 24 hours cache
+#         'KEY_PREFIX': 'userlog',
+#     },
+# }
 
-USERLOG_MAX_SIZE = 1000
-
-USERLOG_PUBLISH = False
-
-USERLOG_IGNORE_URLS = [
-    r'^/favicon\.ico$',
-]
+# USERLOG_MAX_SIZE = 1000
+#
+# USERLOG_PUBLISH = False
+#
+# USERLOG_IGNORE_URLS = [
+#     r'^/favicon\.ico$',
+# ]
 
 IMPORT_EXPORT_USE_TRANSACTIONS = True
 
