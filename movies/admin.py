@@ -4,7 +4,6 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from userlog.admin import LiveUserLogModel
 
 from .models import Genre, Movie, Person, Country
 
@@ -81,7 +80,6 @@ admin.site.name = 'MovieNet'
 admin.site.site_title = 'MovieNet'
 
 admin.site.unregister(Group)
-admin.site.unregister([LiveUserLogModel])
 
 admin.site.register(Movie, MovieModelAdmin)
 admin.site.register(Person, PersonModelAdmin)
