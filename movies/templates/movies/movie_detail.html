@@ -1,0 +1,143 @@
+{% extends 'movies/base.html' %}
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block body %}
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="{{ movie.cover.url }}" class="img-responsive">
+                    <br>
+
+                    {% if user.is_authenticated %}
+                        <a id="add_to_favourites" data-id="{{ movie.id }}" data-f="{{ is_in_favourites }}" class="btn btn-block btn-lg btn-primary" >Add to favourites</a>
+                        <a id="remove_from_favourites" data-id="{{ movie.id }}" class="btn btn-block btn-lg btn-primary">Remove from favourites</a>
+
+                        <a id="add_to_watch_list" data-id="{{ movie.id }}" data-w="{{ is_in_watch_list }}" class="btn btn-block btn-lg btn-primary">Add to watch list</a>
+                        <a id="remove_from_watch_list" data-id="{{ movie.id }}" class="btn btn-block btn-lg btn-primary">Remove from watch list</a>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-8">
+                    <div class="col-sm-12">
+                        <div class="col-sm-12">
+                            <h1 class="col-sm-8 text-center"><u><strong>{{ movie.title }}</strong></u></h1>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h3>Genres:</h3>
+                            </div>
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <br>
+                                {% for genre in movie.genres.all %}
+                                    <a href="{% url 'movies:genre-search' genre.id %}" class="btn btn-default">{{ genre }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h3>Year:</h3>
+                            </div>
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <br>
+                                <a href="{% url 'movies:year-search'  movie.year %}" class="btn btn-default">{{ movie.year }}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h3>Countries:</h3>
+                            </div>
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <br>
+                                {% for country in movie.production_countries.all %}
+                                    <a href="{% url 'movies:country-search' country.id %}" class="btn btn-default">{{ country }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h3>Director:</h3>
+                            </div>
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <br>
+                                <a href="{% url 'movies:person-detail' movie.director.id %}" class="btn btn-default">{{ movie.director.first_name }} {{ movie.director.last_name }}</a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h3>Actors:</h3>
+                            </div>
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <br>
+                                {% for actor in movie.key_actors.all %}
+                                    <a href="{% url 'movies:person-detail' actor.id %}" class="btn btn-default">{{ actor.first_name }} {{ actor.last_name }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <br>
+                        <br class="col-sm-12">
+                        <div class="col-sm-12 text-center">
+                            <div class="col-sm-12">
+                                <h2 class="col-sm-6 text-center" style="font-family: 'Boogaloo', cursive; font-size: 40px"><strong>IMDB rating:</strong></h2>
+                                <h2 class="col-sm-1 text-center" style="font-family: 'Boogaloo', cursive; font-size: 40px"><strong>{{ movie.rating }}</strong></h2>
+                            </div>
+
+                            <div class="col-xs-12 text-center">
+                                <br>
+                                {% if user.is_authenticated %}
+                                    <button id ="likes" data-id="{{movie.id}}" type="button"
+                                            class="btn btn-lg btn-success glyphicon glyphicon-thumbs-up col-xs-6 col-md-3 col-md-offset-1 col-lg-4">
+                                        {{ movie.likes }}
+                                    </button>
+
+                                    <button id ="dislikes" data-id="{{movie.id}}" type="button"
+                                            class="btn btn-lg btn-danger glyphicon glyphicon-thumbs-down col-xs-6 col-md-3 col-lg-4">
+                                        {{ movie.dislikes }}
+                                    </button>
+                                {% else %}
+                                    <button type="button" class="btn btn-lg btn-success glyphicon glyphicon-thumbs-up col-xs-6 col-md-3 col-md-offset-1 col-lg-4">
+                                        {% if movie.likes > 0 %}
+                                            {{ movie.likes }}
+                                        {% endif %}
+                                    </button>
+
+                                    <button type="button" class="btn btn-lg btn-danger glyphicon glyphicon-thumbs-down col-xs-6 col-md-3 col-lg-4">
+                                        {% if movie.dislikes > 0 %}
+                                            {{ movie.dislikes }}
+                                        {% endif %}
+                                    </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <hr>
+                    <div class="well">
+                        <h2>Description</h2>
+                        <p>{{ movie.description }}</p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ trailer_id }}" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12"></div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

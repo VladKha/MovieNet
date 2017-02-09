@@ -1,0 +1,48 @@
+{% extends 'movies/base.html' %}
+{% block title %}Log In{% endblock %}
+
+{% block body %}
+    <br><br><br><br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-offset-2 col-sm-8 col-md-offset-3 col-md-6 col-lg-offset-4 col-lg-4">
+                <div class="panel panel-default text-center">
+                    <div class="panel-body">
+                        <h3>Log In</h3>
+                        {% if error_message %}
+                            <div class="col-sx-12">
+                                <p class="text-danger col-sm-offset-2 col-sm-8">
+                                    <strong>{{ error_message }}</strong>
+                                </p>
+                            </div>
+                        {% endif %}
+                        <form class="form-horizontal col-xs-12" role="form" action="{% url 'movies:login-user'%}"
+                              method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="id_username">Username:</label>
+                                <div class="col-sm-10">
+                                    <input id="id_username" maxlength="30" name="username" type="text">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2" for="id_password">Password:</label>
+                                <div class="col-sm-10">
+                                    <input id="id_password" maxlength="30" name="password" type="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <button type="submit" class="btn btn-block btn-success">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="panel-footer">Don't have an account?
+                        <a href="{% url 'movies:register' %}">Click here</a> to register.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

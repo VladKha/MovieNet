@@ -1,0 +1,117 @@
+{% extends 'movies/base.html' %}
+
+{% block body %}
+    <!-- if result of a search -->
+    {% if query %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="page-header">
+                                <h1 class="text-center text-warning">Search results for:
+                                    <small>{{ query }}</small>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="section hidden-sm hidden-xs" style="padding-top: 0; padding-bottom: 0">
+            <div class="container">
+                <div class="row col-md-12">
+                    <div class="col-md-12">
+                        <h1 class="text-center" style="font-family: 'Boogaloo', cursive; font-size: 60px"><strong>Find a movie for yourself</strong></h1>
+                    </div>
+                    <div class="section">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-1 hidden-sm hidden-xs">
+                                    <form role="form">
+                                        <div class="form-group col-md-3">
+                                            <input class="form-control" id="text_id" type="search" placeholder="Type here..." name="text">
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <select class="form-control" name="genre">
+                                                <option selected disabled>Select genre</option>
+                                                {% for genre in genres %}
+                                                    <option>{{ genre }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <select class="form-control" name="year_period">
+                                                <option selected disabled>Select years</option>
+                                                {% for year_period in year_periods %}
+                                                    <option>{{ year_period }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <select class="form-control" name="rating">
+                                                <option selected disabled>Rating</option>
+                                                {% for rating in ratings %}
+                                                    <option>{{ rating }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <button type="submit" class="btn btn-block btn-success">Search
+                                                <i class="fa fa-fw fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sorting -->
+        <div class="container col-md-12 section-warning">
+            <div class="row text-center">
+                <div class="col-md-offset-7 col-md-2 col-lg-2 col-xs-12 col-sm-6">
+                    <h4>Order by</h4>
+                </div>
+                <div class="btn-group btn-group-sm col-md-3 col-xs-offset-2 col-xs-10 col-sm-6 col-sm-offset-0"
+                     style="padding: 3px">
+                    <div class="btn-group">
+                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Year <span class="fa fa-caret-down"></span></a>
+                        <ul class="dropdown-menu section-primary" role="menu">
+                            <li>
+                                <a href="{% url 'movies:sort' field='year' sort_direction='asc'%}">Ascending</a>
+                                <a href="{% url 'movies:sort' field='year' sort_direction='desc'%}">Descending</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Date added <span class="fa fa-caret-down"></span></a>
+                        <ul class="dropdown-menu section-primary" role="menu">
+                            <li>
+                                <a href="{% url 'movies:sort' field='date_added' sort_direction='asc'%}">Ascending</a>
+                                <a href="{% url 'movies:sort' field='date_added' sort_direction='desc'%}">Descending</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Rating <i class="fa fa-caret-down"></i></a>
+                        <ul class="dropdown-menu section-primary" role="menu">
+                            <li>
+                                <a href="{% url 'movies:sort' field='rating' sort_direction='asc'%}">Ascending</a>
+                                <a href="{% url 'movies:sort' field='rating' sort_direction='desc'%}">Descending</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    {% endif %}
+
+    <!-- Movies -->
+    {% include 'movies/movie_index_template.html' %}
+{% endblock %}

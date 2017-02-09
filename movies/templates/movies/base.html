@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="new movie movies ratings trailers">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="vladkha">
+    <title>{% block title %}MovieNet{% endblock %}</title>
+
+    {% load staticfiles %}
+    <link rel="shortcut icon" type="image/png" href="{%  static 'movies/images/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'movies/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'movies/css/pingendo.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'movies/css/style.css' %}"/>
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Boogaloo" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <div class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'movies:index' %}"><span>MovieNet</span><br></a>
+            </div>
+
+
+            <div class="collapse navbar-collapse text-center" id="navbar-ex-collapse">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'movies:logout-user' %}" class="btn btn-success navbar-btn navbar-right col-xs-12 col-sm-1">Log out</a>
+                {% else %}
+                    <a href="{% url 'movies:login-user' %}" class="btn btn-success navbar-btn navbar-right col-xs-12 col-sm-1">Sign in</a>
+                {% endif %}
+
+
+                <!-- Search header -->
+                <form class="navbar-form navbar-left text-center" role="search" method="get" action="{% url 'movies:index' %}">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Quick search" name="q"
+                        >
+                    </div>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+
+                <!-- My account button -->
+                {% if user.is_authenticated %}
+                    <ul class="nav navbar-nav navbar-right text-center">
+                        <li>
+                            <a href="{% url 'movies:recommendations' %}" class="section-primary" style="color: white">Recommendations</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'movies:user-profile' user.id %}">My account</a>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% block body %}
+        <!-- Code -->
+    {% endblock %}
+
+    <!-- Footer -->
+    <footer class="section section-primary footer"
+            style="padding-top: 1%; padding-bottom: 0;"
+    >
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 text-center">
+                    <p>Can't live a day without a movie?
+                        <br>Than you are at perfect place
+                        <br>We know what you need
+                    </p>
+                </div>
+
+                <div class="col-sm-4 text-center">
+                    <div class="row">
+                        <div class="col-md-12 hidden-lg hidden-md hidden-sm text-center">
+                            <a href="https://github.com/VladKha"><i class="fa fa-3x fa-fw fa-github text-inverse"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-12 hidden-xs text-center">
+                        <a href="https://github.com/VladKha"><i class="fa fa-4x fa-fw fa-github text-inverse"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 text-center">
+                    <p>
+                        <br>
+                        ©Vladyslav Khaitov, 2017
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'movies/js/jquery.min.js' %}"></script>
+    <script src="{% static 'movies/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'movies/js/script.js' %}"></script>
+</body>
+</html>

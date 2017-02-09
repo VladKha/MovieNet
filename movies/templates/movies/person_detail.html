@@ -1,0 +1,55 @@
+{% extends 'movies/base.html' %}
+{% block title %}{{ person }}{% endblock %}
+
+
+{% block body %}
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <img src="{{ person.photo.url }}" class="center-block img-responsive">
+                </div>
+                <div class="col-sm-8">
+                    <div class="col-sm-12">
+                        <h1>{{ person.first_name }} {{ person.last_name }}</h1>
+                        <h4>{{ roles }}</h4>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h3>Date of birth:</h3>
+                            </div>
+                            <div class="col-sm-7 col-sm-offset-1" style="padding-top: 15px">
+                                <h4>{{ person.date_of_birth }}</h4>
+                            </div>
+                        </div>
+                        {% if person.date_of_death %}
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h3>Date of death:</h3>
+                                </div>
+                                <div class="col-sm-7 col-sm-offset-1" style="padding-top: 15px">
+                                    <h4>{{ person.date_of_death }}</h4>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h3>Country:</h3>
+                            </div>
+                            <div class="col-sm-7 col-sm-offset-1">
+                                <br>
+                                <a href="{% url 'movies:country-search' person.country.id %}" class="btn btn-default">{{ person.country }}</a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if movies and movies.count > 0 %}
+        <h3 class="col-sm-12 text-center" style="font-family: 'Boogaloo', cursive; font-size: 40px"><strong><u>Movies</u></strong></h3>
+    {% endif %}
+    {% include 'movies/movie_index_template.html' %}
+
+{% endblock %}
