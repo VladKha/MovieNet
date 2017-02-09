@@ -12,6 +12,11 @@ from .forms import UserForm
 
 
 MOVIES_PER_PAGE = 12
+simple_query = None
+text = None
+genre = None
+year_period = None
+rating = None
 
 
 def create_year_periods(movies):
@@ -52,30 +57,16 @@ def make_pagination(request, movies):
 
 
 def index(request, movies=None):
-    if not movies:
+    if movies is None:
         movies = Movie.objects.all()
 
     context = {
         'genres': Genre.objects.all().order_by('name'),
         'year_periods': create_year_periods(movies),
-        'ratings': create_ratings()
+        'ratings': create_ratings(),
+        'movies': make_pagination(request, movies)
     }
 
-    simple_query = request.GET.get('q')
-    text = request.GET.get('text')
-    genre = request.GET.get('genre')
-    year_period = request.GET.get('year_period')
-    rating = request.GET.get('rating')
-
-    if simple_query:
-        movies, query = simple_search(request, simple_query, movies)
-        context['query'] = query
-
-    elif text or genre or year_period or rating:
-        movies, query = complex_search(request, text, genre, year_period, rating, movies)
-        context['query'] = query
-
-    context['movies'] = make_pagination(request, movies)
     return render(request, 'movies/index.html', context)
 
 
@@ -106,11 +97,19 @@ def movie_detail(request, movie_id):
     return render(request, 'movies/movie_detail.html', context)
 
 
-def simple_search(request, simple_query, movies):
-    words = re.split('\\s+', simple_query.strip())
-    result = []
+def simple_search(request):
+    global simple_query
+    tmp = request.GET.get('q')
+    if tmp is not None:
+        simple_query = tmp
+    words = re.split(r'\s+', simple_query.strip())
+
+    if len(words) == 0 or (len(words) == 1 and words[0] == ''):
+        return redirect('movies:index')
+
+    movies = Movie.objects.all()
     for word in words:
-        result = movies.filter(
+        movies = movies.filter(
             Q(title__icontains=word) |
             Q(description__icontains=word) |
             Q(director__last_name__icontains=word) |
@@ -119,25 +118,53 @@ def simple_search(request, simple_query, movies):
             Q(key_actors__last_name__icontains=word)
         ).distinct()
 
-    query = '"' + simple_query + '"'
-    return result, query
+    context = {
+        'query': '"' + simple_query + '"',
+        'movies': make_pagination(request, movies)
+    }
+
+    return render(request, 'movies/index.html', context)
 
 
-def complex_search(request, text, genre, year_period, rating, movies):
-    result = movies
+def complex_search(request):
+    movies = Movie.objects.all()
+
+    global text, genre, year_period, rating
+    tmp = request.GET.get('text')
+    if tmp is not None:
+        text = tmp
+        genre = request.GET.get('genre')
+        year_period = request.GET.get('year_period')
+        rating = request.GET.get('rating')
+    print(text, genre, year_period, rating)
+
     q_genre = ''
     q_text = ''
     q_date_period = ''
     q_rating = ''
 
     if genre:
-        result = result.filter(Q(genres__name__icontains=genre)).distinct()
+        movies = movies.filter(Q(genres__name__icontains=genre)).distinct()
         q_genre = ' genre "' + genre + '"'
 
+    if year_period:
+        years = year_period.split(' - ')
+        movies = movies.filter(
+            Q(year__gte=int(years[0])) & Q(year__lte=int(years[1]))
+        ).distinct()
+        q_date_period = ' from ' + year_period + ' years'
+
+    if rating:
+        lowest_rating = int(rating[:rating.index('+')])
+        movies = movies.filter(
+            Q(rating__gte=lowest_rating)
+        ).distinct()
+        q_rating = ' rating ' + rating
+
     if text:
-        words = re.split('\\s+', text.strip())
+        words = re.split(r'\s+', text.strip())
         for word in words:
-            result = result.filter(
+            movies = movies.filter(
                 Q(title__icontains=word) |
                 Q(description__icontains=word) |
                 Q(director__last_name__icontains=word) |
@@ -147,23 +174,17 @@ def complex_search(request, text, genre, year_period, rating, movies):
             ).distinct()
         q_text = '"' + text + '"'
 
-    if year_period:
-        years = year_period.split(' - ')
-        result = result.filter(
-            Q(year__gte=int(years[0])) & Q(year__lte=int(years[1]))
-        ).distinct()
-        q_date_period = ' from ' + year_period + ' years'
-
-    if rating:
-        lowest_rating = int(rating[:rating.index('+')])
-        result = result.filter(
-            Q(rating__gte=lowest_rating)
-        ).distinct()
-        q_rating = ' rating ' + rating
-
     query = q_text + q_genre + q_rating + q_date_period
 
-    return result, query
+    if query == '':
+        return redirect('movies:index')
+
+    context = {
+        'query': query,
+        'movies': make_pagination(request, movies)
+    }
+
+    return render(request, 'movies/index.html', context)
 
 
 def genre_search(request, genre_id):

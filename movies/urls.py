@@ -5,6 +5,9 @@ app_name = 'movies'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^simple_search/$', views.simple_search, name='simple-search'),
+    url(r'^complex_search/$', views.complex_search, name='complex-search'),
+
     url(r'^sort=(?P<field>[a-zA-Z_]+)&(?P<sort_direction>[a-z]+)/$', views.sort, name='sort'),
     url(r'^(?P<movie_id>[0-9]+)/$', views.movie_detail, name='movie-detail'),
     url(r'^genre=(?P<genre_id>[0-9]+)/$', views.genre_search, name='genre-search'),

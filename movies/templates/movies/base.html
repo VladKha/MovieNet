@@ -42,10 +42,9 @@
 
 
                 <!-- Search header -->
-                <form class="navbar-form navbar-left text-center" role="search" method="get" action="{% url 'movies:index' %}">
+                <form class="navbar-form navbar-left text-center" role="search" method="get" action="{% url 'movies:simple-search' %}">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Quick search" name="q"
-                        >
+                        <input type="text" class="form-control" placeholder="Quick search" name="q">
                     </div>
                     <button type="submit" class="btn btn-success">Search</button>
                 </form>

@@ -29,7 +29,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-10 col-md-offset-1 hidden-sm hidden-xs">
-                                    <form role="form">
+                                    <form role="search" method="get" action="{% url 'movies:complex-search' %}">
                                         <div class="form-group col-md-3">
                                             <input class="form-control" id="text_id" type="search" placeholder="Type here..." name="text">
                                         </div>

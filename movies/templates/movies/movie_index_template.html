@@ -2,24 +2,23 @@
 {% if movies %}
     <div class="movies-container container-fluid">
         <div class="row">
-            {% if movies.count is 1 %}
+            {% if movies.paginator.count is 1 %}
                 <div class="col-sm-offset-5 col-sm-4 col-lg-2">
                     <div class="thumbnail">
-                        <a href="{% url 'movies:movie-detail' movies.first.id %}">
-                            <img src="{{ movies.first.cover.url }}" class="img-responsive" title="{{ movies.first.title }} }}">
+                        <a href="{% url 'movies:movie-detail' movies.object_list.first.id %}">
+                            <img src="{{ movies.object_list.first.cover.url }}" class="img-responsive" title="{{ movies.object_list.first.title }} }}">
                         </a>
                         <div class="caption">
-                            <a href="{% url 'movies:movie-detail' movies.first.id %}">
+                            <a href="{% url 'movies:movie-detail' movies.object_list.first.id %}">
                                 <h4 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-                                    {{ movies.first.title }}
+                                    {{ movies.object_list.first.title }}
                                 </h4>
                             </a>
-                            <h5>{{ movies.first.year }}</h5>
+                            <h5>{{ movies.object_list.first.year }}</h5>
                         </div>
                     </div>
                 </div>
             {% else %}
-
                 {% for movie in movies %}
                     <div class="col-sm-4 col-lg-2">
                         <div class="thumbnail">
@@ -40,7 +39,6 @@
             {% endif %}
         </div>
     </div>
-
 {% else %}
     <div class="section">
         <div class="container">
