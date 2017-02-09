@@ -109,7 +109,7 @@ class Movie(models.Model):
         null=True,
         blank=True,
         related_name='directed_movies',
-        # limit_choices_to={'production_roles': ProductionRole.objects.filter(title='Director').get().pk},
+        limit_choices_to={'production_roles': ProductionRole.objects.filter(title='Director').get().pk},
         verbose_name='director'
     )
     production_countries = models.ManyToManyField(
@@ -126,7 +126,7 @@ class Movie(models.Model):
     key_actors = models.ManyToManyField(
         Person,
         blank=True,
-        # limit_choices_to={'production_roles': ProductionRole.objects.filter(title='Actor').get().pk},
+        limit_choices_to={'production_roles': ProductionRole.objects.filter(title='Actor').get().pk},
         related_name='acted_movies',
         verbose_name='list of key actors',
     )
