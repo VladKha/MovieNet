@@ -24,10 +24,13 @@ pull request by clicking on the green pull request icon.
 ![Pull Request Icon](README_resources/pull-request-icon.png)
 
 ## Screenshots
+#### Home page
 ![](README_resources/index_page.png)
 
+#### Movie page
 ![](README_resources/movie_page.png)
 
+#### Admin
 ![](README_resources/admin_page.png)
 
 
