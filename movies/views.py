@@ -1,7 +1,7 @@
 import re
 
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -86,7 +86,7 @@ def movie_detail(request, movie_id):
     }
 
     if request.user.is_authenticated():
-        user = User.objects.get(id=int(request.user.id))
+        user = User.objects.get(id=request.user.id)
 
         is_in_favourites = user.profile.favourite_movies.filter(id=movie_id).count() == 1
         is_in_watch_list = user.profile.watch_list.filter(id=movie_id).count() == 1
@@ -136,7 +136,6 @@ def complex_search(request):
         genre = request.GET.get('genre')
         year_period = request.GET.get('year_period')
         rating = request.GET.get('rating')
-    print(text, genre, year_period, rating)
 
     q_genre = ''
     q_text = ''
@@ -279,22 +278,22 @@ def register(request):
 
 
 def user_profile(request, user_id):
-    user = User.objects.get(id=user_id)
+    user = request.user
 
-    if user.is_authenticated:
+    if user.is_authenticated and user.id == int(user_id):
         liked_movies = user.profile.liked_movies.all()
         favourite_movies = user.profile.favourite_movies.all()
         watch_list = user.profile.watch_list.all()
 
         context = {
-            'user': User.objects.get(id=user_id),
+            'user': user,
             'liked_movies': make_pagination(request, liked_movies),
             'favourite_movies':  make_pagination(request, favourite_movies),
             'watch_list':  make_pagination(request, watch_list),
         }
         return render(request, 'movies/user_profile.html', context)
     else:
-        return redirect('movies:index')
+        raise Http404
 
 
 def recommendations(request):
