@@ -1,5 +1,5 @@
 # MovieNet
-Website with basic information about
+[Website](https://movie-net.herokuapp.com/) with basic information about
 movies, admin panel and very simple recommendation system.
 
 ## Technology stack
