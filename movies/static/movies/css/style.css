@@ -2,6 +2,21 @@ body {
     background: white url("../images/background.png");
 }
 
+html, body {
+    height: 100%;
+}
+
+#wrap {
+    min-height: 90%;
+}
+
+.footer {
+    position: relative;
+    clear:both;
+    padding-top: 1%;
+    padding-bottom: 0;
+}
+
 ul.errorlist {
     padding-left: 0;
 }
