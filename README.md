@@ -12,7 +12,8 @@ movies, admin panel and very simple recommendation system.
 Find any bugs or want to improve? Contributions are welcome!
 
 - Fork this repository.
-![Fork Icon](README_resources/fork-icon.png)
+
+  ![Fork Icon](README_resources/fork-icon.png)
 
 - Clone this repository to your desktop to make changes.
 ```sh
@@ -21,7 +22,8 @@ $ cd MovieNet
 ```
 - Once you've pushed changes to your local repository, you can issue a
 pull request by clicking on the pull request icon.
-![Pull Request Icon](README_resources/pull-request-icon.png)
+
+    ![Pull Request Icon](README_resources/pull-request-icon.png)
 
 ## Screenshots
 #### Home page
