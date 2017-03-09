@@ -6,7 +6,7 @@ movies, admin panel and very simple recommendation system.
 - python 3.6
 - Django 1.10.5
 - Bootstrap 3
-- a little jQuery and Ajax
+- a little of jQuery and Ajax
 
 ## How to Contribute
 Find any bugs or want to improve? Contributions are welcome!
