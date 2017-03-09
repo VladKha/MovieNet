@@ -11,16 +11,16 @@ movies, admin panel and very simple recommendation system.
 ## How to Contribute
 Find any bugs or want to improve? Contributions are welcome!
 
-1. Fork this repository.
+- Fork this repository.
 ![Fork Icon](README_resources/fork-icon.png)
 
-2. Clone this repository to your desktop to make changes.
+- Clone this repository to your desktop to make changes.
 ```sh
 $ git clone {YOUR_REPOSITORY_CLONE_URL}
 $ cd MovieNet
 ```
-3. Once you've pushed changes to your local repository, you can issue a
-pull request by clicking on the green pull request icon.
+- Once you've pushed changes to your local repository, you can issue a
+pull request by clicking on the pull request icon.
 ![Pull Request Icon](README_resources/pull-request-icon.png)
 
 ## Screenshots
