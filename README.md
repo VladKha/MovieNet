@@ -13,7 +13,7 @@ Find any bugs or want to improve? Contributions are welcome!
 
 - Fork this repository.
 
-  ![Fork Icon](README_resources/fork-icon.png)
+  ![Fork Icon](.github/fork-icon.png)
 
 - Clone this repository to your desktop to make changes.
 ```sh
@@ -23,17 +23,17 @@ $ cd MovieNet
 - Once you've pushed changes to your local repository, you can issue a
 pull request by clicking on the pull request icon.
 
-    ![Pull Request Icon](README_resources/pull-request-icon.png)
+    ![Pull Request Icon](.github/pull-request-icon.png)
 
 ## Screenshots
 #### Home page
-![](README_resources/index_page.png)
+![](.github/index_page.png)
 
 #### Movie page
-![](README_resources/movie_page.png)
+![](.github/movie_page.png)
 
 #### Admin
-![](README_resources/admin_page.png)
+![](.github/admin_page.png)
 
 
 ## License
