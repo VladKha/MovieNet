@@ -2,6 +2,8 @@
 [Website](https://movie-net.herokuapp.com/) with basic information about
 movies, admin panel and very simple recommendation system.
 
+_**Note:** site may need some spin up time if nobody has accessed it for a certain period._
+
 ## Technology stack
 - python 3.6
 - Django 1.10.5
