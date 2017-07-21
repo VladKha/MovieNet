@@ -1,8 +1,7 @@
 import time
 import datetime
 
-from django.contrib.auth.models import User
-from django.test import Client, TestCase
+from django.test import TestCase
 from .models import Genre, ProductionRole, Country, Person, Movie
 
 
