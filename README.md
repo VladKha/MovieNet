@@ -4,7 +4,7 @@ movies, admin panel and very simple recommendation system.
 
 _**Note:** site may need some spin up time if nobody has accessed it for a certain period._
 
-## Technology stack
+## Built With
 - python 3.6
 - Django 1.10.5
 - Bootstrap 3
@@ -39,4 +39,4 @@ pull request by clicking on the pull request icon.
 
 
 ## License
-The contents of this repository are covered under the [MIT License](LICENSE.txt).
+This project is licensed under the MIT License - see the [LICENSE.txt](LICENSE.txt) file for details.
