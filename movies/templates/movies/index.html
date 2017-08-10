@@ -72,40 +72,37 @@
         </div>
 
         <!-- Sorting -->
-        <div class="container col-md-12 section-warning">
-            <div class="row text-center">
-                <div class="col-md-offset-7 col-md-2 col-lg-2 col-xs-12 col-sm-6">
-                    <h4>Order by</h4>
+        <div class="container col-md-12 section-warning text-center">
+            <div class="col-xs-12 col-sm-offset-5 col-sm-2 col-md-offset-6 col-md-2 col-lg-offset-8 col-lg-1">
+                <h4>Order by</h4>
+            </div>
+            <div class="btn-group btn-group-sm col-xs-offset-1 col-xs-11 col-sm-offset-0 col-sm-5 col-md-offset-0 col-md-4 col-lg-3">
+                <div class="btn-group">
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Year <span class="fa fa-caret-down"></span></a>
+                    <ul class="dropdown-menu section-primary" role="menu">
+                        <li>
+                            <a href="{% url 'movies:sort' field='year' sort_direction='asc'%}">Ascending</a>
+                            <a href="{% url 'movies:sort' field='year' sort_direction='desc'%}">Descending</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="btn-group btn-group-sm col-md-3 col-xs-offset-3 col-xs-9 col-sm-6 col-sm-offset-0"
-                     style="padding: 3px">
-                    <div class="btn-group">
-                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Year <span class="fa fa-caret-down"></span></a>
-                        <ul class="dropdown-menu section-primary" role="menu">
-                            <li>
-                                <a href="{% url 'movies:sort' field='year' sort_direction='asc'%}">Ascending</a>
-                                <a href="{% url 'movies:sort' field='year' sort_direction='desc'%}">Descending</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Date added <span class="fa fa-caret-down"></span></a>
-                        <ul class="dropdown-menu section-primary" role="menu">
-                            <li>
-                                <a href="{% url 'movies:sort' field='date_added' sort_direction='asc'%}">Ascending</a>
-                                <a href="{% url 'movies:sort' field='date_added' sort_direction='desc'%}">Descending</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Rating <i class="fa fa-caret-down"></i></a>
-                        <ul class="dropdown-menu section-primary" role="menu">
-                            <li>
-                                <a href="{% url 'movies:sort' field='rating' sort_direction='asc'%}">Ascending</a>
-                                <a href="{% url 'movies:sort' field='rating' sort_direction='desc'%}">Descending</a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="btn-group">
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Date added <span class="fa fa-caret-down"></span></a>
+                    <ul class="dropdown-menu section-primary" role="menu">
+                        <li>
+                            <a href="{% url 'movies:sort' field='date_added' sort_direction='asc'%}">Ascending</a>
+                            <a href="{% url 'movies:sort' field='date_added' sort_direction='desc'%}">Descending</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> Rating <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu section-primary" role="menu">
+                        <li>
+                            <a href="{% url 'movies:sort' field='rating' sort_direction='asc'%}">Ascending</a>
+                            <a href="{% url 'movies:sort' field='rating' sort_direction='desc'%}">Descending</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
