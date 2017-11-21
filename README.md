@@ -19,7 +19,7 @@ Find any bugs or want to improve? Contributions are welcome!
 
 - Clone this repository to your desktop to make changes.
 ```sh
-$ git clone {YOUR_REPOSITORY_CLONE_URL}
+$ git clone https://github.com/VladKha/MovieNet.git
 $ cd MovieNet
 ```
 - Once you've pushed changes to your local repository, you can issue a
