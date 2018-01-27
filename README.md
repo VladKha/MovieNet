@@ -6,7 +6,7 @@ _**Note:** site may need some spin up time if nobody has accessed it for a certa
 
 ## Built With
 - python 3.6
-- Django 1.10.5
+- Django 2
 - Bootstrap 3
 - a little of jQuery and Ajax
 
