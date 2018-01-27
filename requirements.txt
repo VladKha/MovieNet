@@ -7,7 +7,7 @@ django-debug-toolbar==1.9.1
 django-import-export==0.7.0
 django-jet==1.0.7
 gunicorn==19.7.1
-olefile==0.44
+olefile==0.45.1
 Pillow==4.0.0
 psycopg2==2.6.2
 redis==2.10.5
