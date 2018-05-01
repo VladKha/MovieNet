@@ -8,7 +8,7 @@ django-import-export==1.0.0
 django-jet==1.0.7
 gunicorn==19.8.1
 olefile==0.45.1
-Pillow==5.0.0
+Pillow==5.1.0
 psycopg2==2.7.3.2
 redis==2.10.6
 sqlparse==0.2.4
