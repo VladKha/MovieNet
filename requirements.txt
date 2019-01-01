@@ -4,7 +4,7 @@ dj-static==0.0.6
 Django==2.1.4
 django-countries==5.3.2
 django-debug-toolbar==1.11
-django-import-export==0.7.0
+django-import-export==1.1.0
 django-jet==1.0.7
 gunicorn==19.7.1
 olefile==0.45.1
