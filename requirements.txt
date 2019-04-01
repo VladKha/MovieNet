@@ -11,7 +11,7 @@ olefile==0.46
 Pillow==5.4.1
 psycopg2==2.7.7
 redis==3.2.1
-sqlparse==0.2.4
+sqlparse==0.3.0
 static3==0.7.0
 tablib==0.12.1
 whitenoise==3.3.1
