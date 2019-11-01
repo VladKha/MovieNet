@@ -10,7 +10,7 @@ gunicorn==19.9.0
 olefile==0.46
 Pillow==6.2.1
 psycopg2==2.8.4
-redis==2.10.6
+redis==3.3.11
 sqlparse==0.2.4
 static3==0.7.0
 tablib==0.12.1
