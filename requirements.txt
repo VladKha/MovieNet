@@ -14,4 +14,4 @@ redis==3.5.0
 sqlparse==0.3.1
 static3==0.7.0
 tablib==1.1.0
-whitenoise==3.3.1
+whitenoise==5.0.1
