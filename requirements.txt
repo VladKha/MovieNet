@@ -2,7 +2,7 @@ diff-match-patch==20200713
 dj-database-url==0.5.0
 dj-static==0.0.6
 Django==3.0.8
-django-countries==5.1.1
+django-countries==6.1.2
 django-debug-toolbar==1.9.1
 django-import-export==0.7.0
 django-jet==1.0.7
