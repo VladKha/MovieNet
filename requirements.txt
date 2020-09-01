@@ -1,5 +1,5 @@
 diff-match-patch==20200713
-dj-database-url==0.4.2
+dj-database-url==0.5.0
 dj-static==0.0.6
 Django==2.0.2
 django-countries==5.1.1
